@@ -4,7 +4,7 @@ module ShopifyApp
   module AccessScopes
     class ShopStrategy
       class << self
-        def scopes_mismatch?(shop_domain)
+        def update_access_scopes?(shop_domain)
           shop_access_scopes = shop_access_tokens(shop_domain)
           return true unless shop_access_scopes
           configuration_access_scopes != shop_access_tokens(shop_domain)

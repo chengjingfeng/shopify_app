@@ -26,7 +26,7 @@ module AccessScopesStrategyHelpers
 
   class MockShopScopesMatchStrategy
     class << self
-      def scopes_mismatch?(*_args)
+      def update_access_scopes?(*_args)
         false
       end
     end
@@ -34,7 +34,7 @@ module AccessScopesStrategyHelpers
 
   class MockShopScopesMismatchStrategy
     class << self
-      def scopes_mismatch?(*_args)
+      def update_access_scopes?(*_args)
         true
       end
     end

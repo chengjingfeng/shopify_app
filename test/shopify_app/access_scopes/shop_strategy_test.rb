@@ -17,7 +17,7 @@ module ShopifyApp
           .with(shopify_domain)
           .returns(mock_shop_session('read_products'))
 
-        refute ShopifyApp::AccessScopes::ShopStrategy.scopes_mismatch?(shopify_domain)
+        refute ShopifyApp::AccessScopes::ShopStrategy.update_access_scopes?(shopify_domain)
       end
 
       def test_scopes_mismatch_if_configuration_and_stored_scopes_are_not_the_same
@@ -27,7 +27,7 @@ module ShopifyApp
           .with(shopify_domain)
           .returns(mock_shop_session('read_products'))
 
-        assert ShopifyApp::AccessScopes::ShopStrategy.scopes_mismatch?(shopify_domain)
+        assert ShopifyApp::AccessScopes::ShopStrategy.update_access_scopes?(shopify_domain)
       end
 
       private

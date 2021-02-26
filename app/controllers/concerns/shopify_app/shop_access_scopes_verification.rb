@@ -17,7 +17,7 @@ module ShopifyApp
     private
 
     def scopes_mismatch?
-      ShopifyApp.configuration.shop_access_scopes_strategy.scopes_mismatch?(current_shopify_domain)
+      ShopifyApp.configuration.shop_access_scopes_strategy.update_access_scopes?(current_shopify_domain)
     end
 
     def current_shopify_domain
