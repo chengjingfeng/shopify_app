@@ -83,7 +83,7 @@ module ShopifyApp
 
     def update_user_access_scopes?
       return true if user_session.blank?
-      user_access_scopes_strategy.scopes_mismatch_by_user_id?(session[:user_id])
+      user_access_scopes_strategy.update_access_scopes_for_user_id?(session[:user_id])
     rescue NotImplementedError
       false
     end

@@ -2,11 +2,11 @@
 module AccessScopesStrategyHelpers
   class MockUserScopesMatchStrategy
     class << self
-      def scopes_mismatch_by_shopify_user_id?(*_args)
+      def update_access_scopes_for_shopify_user_id?(*_args)
         false
       end
 
-      def scopes_mismatch_by_user_id?(*_args)
+      def update_access_scopes_for_user_id?(*_args)
         false
       end
     end
@@ -14,11 +14,11 @@ module AccessScopesStrategyHelpers
 
   class MockUserScopesMismatchStrategy
     class << self
-      def scopes_mismatch_by_shopify_user_id?(*_args)
+      def update_access_scopes_for_shopify_user_id?(*_args)
         true
       end
 
-      def scopes_mismatch_by_user_id?(*_args)
+      def update_access_scopes_for_user_id?(*_args)
         true
       end
     end

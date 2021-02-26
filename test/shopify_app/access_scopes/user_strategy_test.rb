@@ -20,7 +20,7 @@ module ShopifyApp
           .stubs(:retrieve_user_session).with(user_id)
           .returns(mock_user_session('read_products'))
 
-        refute ShopifyApp::AccessScopes::UserStrategy.scopes_mismatch_by_user_id?(user_id)
+        refute ShopifyApp::AccessScopes::UserStrategy.update_access_scopes_for_user_id?(user_id)
       end
 
       def test_scopes_mismatch_for_db_generated_user_id
@@ -29,7 +29,7 @@ module ShopifyApp
           .stubs(:retrieve_user_session).with(user_id)
           .returns(mock_user_session('read_products'))
 
-        assert ShopifyApp::AccessScopes::UserStrategy.scopes_mismatch_by_user_id?(user_id)
+        assert ShopifyApp::AccessScopes::UserStrategy.update_access_scopes_for_user_id?(user_id)
       end
 
       def test_scopes_match_for_shopify_user_id
@@ -39,7 +39,7 @@ module ShopifyApp
           .with(shopify_user_id)
           .returns(mock_user_session('write_orders, read_products'))
 
-        refute ShopifyApp::AccessScopes::UserStrategy.scopes_mismatch_by_shopify_user_id?(shopify_user_id)
+        refute ShopifyApp::AccessScopes::UserStrategy.update_access_scopes_for_shopify_user_id?(shopify_user_id)
       end
 
       def test_scopes_mismatch_for_shopify_user_id
@@ -49,7 +49,7 @@ module ShopifyApp
           .with(shopify_user_id)
           .returns(mock_user_session('write_orders, read_products'))
 
-        assert ShopifyApp::AccessScopes::UserStrategy.scopes_mismatch_by_shopify_user_id?(shopify_user_id)
+        assert ShopifyApp::AccessScopes::UserStrategy.update_access_scopes_for_shopify_user_id?(shopify_user_id)
       end
 
       private

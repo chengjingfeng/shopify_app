@@ -4,13 +4,13 @@ module ShopifyApp
   module AccessScopes
     class UserStrategy
       class << self
-        def scopes_mismatch_by_user_id?(user_id)
+        def update_access_scopes_for_user_id?(user_id)
           user_access_scopes = user_access_tokens_by_user_id(user_id)
           return true unless user_access_scopes
           configuration_access_scopes != user_access_scopes
         end
 
-        def scopes_mismatch_by_shopify_user_id?(shopify_user_id)
+        def update_access_scopes_for_shopify_user_id?(shopify_user_id)
           user_access_scopes = user_access_tokens_by_shopify_user_id(shopify_user_id)
           return true unless user_access_scopes
           configuration_access_scopes != user_access_scopes
