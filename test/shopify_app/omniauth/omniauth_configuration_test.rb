@@ -6,7 +6,7 @@ module ShopifyApp
     attr_reader :strategy, :request
 
     def setup
-      ShopifyApp.configuration.shop_access_scopes_strategy = AccessScopesStrategyHelpers::MockShopScopesMatchStrategy
+      ShopifyApp.configuration.shop_access_scopes_strategy = AccessScopesStrategyHelpers::MockScopesMatchStrategy
       ShopifyApp.configuration.old_secret = 'old_secret'
       ShopifyApp.configuration.user_access_scopes = 'read_products, read_orders'
       ShopifyApp.configuration.shop_access_scopes = 'write_products, write_themes'
@@ -101,7 +101,7 @@ module ShopifyApp
     private
 
     def mismatch_shop_scopes_strategy
-      AccessScopesStrategyHelpers::MockShopScopesMismatchStrategy
+      AccessScopesStrategyHelpers::MockScopesMismatchStrategy
     end
 
     def mock_strategy
