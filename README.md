@@ -103,6 +103,7 @@ You can find documentation on gem usage, concepts, mixins, installation, and mor
   * [Generators](/docs/shopify_app/generators.md)
   * [ScriptTags](/docs/shopify_app/script-tags.md)
   * [Session repository](/docs/shopify_app/session-repository.md)
+  * [Access scopes strategies](/docs/shopify_app/access-scopes-strategies.md)
   * [Testing](/docs/shopify_app/testing.md)
   * [Webhooks](/docs/shopify_app/webhooks.md)
 
