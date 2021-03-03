@@ -20,7 +20,7 @@ module ShopifyApp
       @routes = ShopifyApp::Engine.routes
       ShopifyApp.configuration = nil
       ShopifyApp.configuration.embedded_app = true
-      ShopifyApp.configuration.user_access_scopes_strategy = AccessScopesStrategyHelpers::MockScopesMatchStrategy
+      mock_user_scopes_match_strategy
 
       I18n.locale = :en
 
@@ -376,7 +376,7 @@ module ShopifyApp
     end
 
     test "#callback redirects to login for user token flow if user session access scopes mismatch by user_id" do
-      ShopifyApp.configuration.user_access_scopes_strategy = AccessScopesStrategyHelpers::MockScopesMismatchStrategy
+      mock_user_scopes_mismatch_strategy
       mock_shopify_user_omniauth
       _session = mock_user_session
 

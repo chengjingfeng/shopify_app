@@ -18,8 +18,8 @@ module ShopifyApp
     attr_accessor :after_authenticate_job
     attr_accessor :api_version
 
-    attr_accessor :shop_access_scopes_strategy
-    attr_accessor :user_access_scopes_strategy
+    attr_reader :shop_access_scopes_strategy
+    attr_reader :user_access_scopes_strategy
 
     # customise urls
     attr_accessor :root_url

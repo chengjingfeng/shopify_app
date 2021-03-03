@@ -6,7 +6,7 @@ module ShopifyApp
     attr_reader :strategy, :request
 
     def setup
-      ShopifyApp.configuration.shop_access_scopes_strategy = AccessScopesStrategyHelpers::MockScopesMatchStrategy
+      mock_shop_scopes_match_strategy
       ShopifyApp.configuration.old_secret = 'old_secret'
       ShopifyApp.configuration.user_access_scopes = 'read_products, read_orders'
       ShopifyApp.configuration.shop_access_scopes = 'write_products, write_themes'
@@ -74,7 +74,7 @@ module ShopifyApp
     end
 
     def test_configuration_builds_strategy_options_for_offline_tokens_if_shop_requires_scopes
-      ShopifyApp.configuration.shop_access_scopes_strategy = mismatch_shop_scopes_strategy
+      mock_mismatch_shop_scopes_strategy
       configuration = OmniAuthConfiguration.new(strategy, request)
 
       configuration.build_options
@@ -86,8 +86,8 @@ module ShopifyApp
     end
 
     def test_configuration_ignores_shop_scope_mismatch_if_per_user_permissions_over_written
+      mock_mismatch_shop_scopes_strategy
       configuration = OmniAuthConfiguration.new(strategy, request)
-      ShopifyApp.configuration.shop_access_scopes_strategy = mismatch_shop_scopes_strategy
       configuration.per_user_permissions = true
 
       configuration.build_options
@@ -100,8 +100,12 @@ module ShopifyApp
 
     private
 
-    def mismatch_shop_scopes_strategy
-      AccessScopesStrategyHelpers::MockScopesMismatchStrategy
+    def mock_shop_scopes_match_strategy
+      ShopifyApp::AccessScopes::ShopStrategy.stubs(:update_access_scopes?).returns(false)
+    end
+
+    def mock_mismatch_shop_scopes_strategy
+      ShopifyApp::AccessScopes::ShopStrategy.stubs(:update_access_scopes?).returns(true)
     end
 
     def mock_strategy

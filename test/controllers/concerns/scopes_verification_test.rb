@@ -21,7 +21,8 @@ class ShopAccessScopesVerificationControllertest < ActionController::TestCase
   end
 
   test '#login_on_scope_changes does nothing if shop scopes match' do
-    ShopifyApp.configuration.shop_access_scopes_strategy = AccessScopesStrategyHelpers::MockScopesMatchStrategy
+    mock_shop_scopes_match_strategy
+    #ShopifyApp.configuration.shop_access_scopes_strategy = AccessScopesStrategyHelpers::MockScopesMatchStrategy
 
     get :index, params: { shop: @shopify_domain }
 
@@ -29,7 +30,7 @@ class ShopAccessScopesVerificationControllertest < ActionController::TestCase
   end
 
   test '#login_on_scope_changes redirects to login when scopes do not match' do
-    ShopifyApp.configuration.shop_access_scopes_strategy = AccessScopesStrategyHelpers::MockScopesMismatchStrategy
+    mock_shop_scopes_mismatch_strategy
 
     get :index, params: { shop: @shopify_domain }
 
